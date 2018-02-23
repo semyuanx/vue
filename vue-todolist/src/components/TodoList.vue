@@ -11,6 +11,12 @@
           @update='updateVal'
           ></li>
       </ul>
+      <ul>
+        <li v-for="(item, key) in list">
+          {{item}}
+        </li>
+      </ul>
+      <button @click="addListItem()">更改</button>
   </div>
     
 </template>
@@ -27,10 +33,15 @@ export default {
       items:[{
         id:len++,
         text:"haha"
-      }]
+      }],
+      list:[1,2,3,4]
     }
   },
   methods:{   
+    addListItem:function(){
+      this.list[0] = 3;
+      console.log(this.list)
+    },  
     addItem:function(){
       this.items.push({
         id:len++,
