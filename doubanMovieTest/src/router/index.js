@@ -19,6 +19,11 @@ var routers = [
       component: Upcoming
     },
     {
+      path:'/top250',
+      name:'top250',
+      component: Top250
+    },
+    {
       path: '/search',
       name: 'Search',
       component: Search

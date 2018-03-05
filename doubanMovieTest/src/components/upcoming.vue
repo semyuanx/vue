@@ -14,10 +14,20 @@
                   </el-dropdown>
               </div>
           </div>
+          <div class="two-list" v-loading="false">
+            <ul class="clearfix">
+                 <UpComingTag v-for="(item,index) in movingList.subjects" :key="index" :data="item" class="movieTag"></UpComingTag>
+            </ul>
+            <div class="load-more">
+              <el-button type="text" @click="moredata()"></el-button>
+            </div>
+          </div>
+         
       </article>
   </div>
 </template>
 <script>
+import UpComingTag from './common/upcomingTag.vue';
 export default {
   name: "upComing",
   data() {
@@ -41,15 +51,28 @@ export default {
       ]
     };
   },
+  mounted(){
+    this.$store.dispatch("getUpcoming");
+  },
   methods:{
       changeCity(command){
           this.$store.commit('MOVIE_CITY', {city: command})
+      },
+      moredata(){
+
       }
   },
   computed: {
     city() {
       return this.$store.getters.city;
+    },
+    movingList(){
+      console.log(this.$store.getters.upcomBody)
+      return this.$store.getters.upcomBody;
     }
+  },
+  components:{
+    UpComingTag
   }
 };
 </script>

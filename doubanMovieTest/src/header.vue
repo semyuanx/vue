@@ -14,8 +14,8 @@
         </div>
         <div class="douban-bar">
             <ul>
-                <li v-for="(bar,key) in barList" :key="key" @click="choiseUrl(bar.title)">
-                    <router-link :to="bar.url" :class="title === bar.title ? 'active' : ''">
+                <li v-for="(bar,key) in barList" :key="key" @click="choiseUrl(bar.url)">
+                    <router-link :to="bar.url" :class="url === bar.url ? 'active' : ''">
                         {{bar.title}}
                     </router-link>
                 </li>
@@ -29,7 +29,7 @@
         data(){
             return {
                 content:'',
-                title:'正在热映',
+                url:'/',
                 barList:[{
                     title:'正在热映',
                     url:'/'
@@ -42,12 +42,16 @@
                 }]
             }
         },
+        mounted(){
+            this.url = this.$router.currentRoute.fullPath;
+        },
         methods:{
             searchMovie(){
-
+                
+                this.$router.push({path:'/search',query:{searchText:this.content}})
             },
-            choiseUrl(title){
-                this.title = title;
+            choiseUrl(url){
+                this.url = url;
             }
         }
     }

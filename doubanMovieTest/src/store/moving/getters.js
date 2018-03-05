@@ -9,6 +9,9 @@ export const getters = {
         console.log(state.movingList)
         return state.movingList;
     },
+    upcomingList: state => {
+        return state.upcomingList;
+    },
     loadingMoving: state => {
         return state.loadingMoving;
     },
@@ -23,6 +26,15 @@ export const getters = {
     },
     movieDetail: state => {
         return state.movieDetail;
+    },
+    upcomBody: state => {
+        return state.upcomBody
+    },
+    ranking250: state => {
+        return state.ranking250
+    },
+    searchText: state => {
+        return state.searchText;
     }
 
 }
